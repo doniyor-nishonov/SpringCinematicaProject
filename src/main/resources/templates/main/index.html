@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Apple TV+</title>
+    <link rel="stylesheet" href="/static/css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+<div class="container">
+    <aside class="sidebar">
+        <div class="sidebar-header">
+            <h2>Cinematica</h2>
+        </div>
+        <nav class="sidebar-nav">
+            <ul>
+                <li sec:authorize="hasRole('ADMIN')"><a href="/admin/dashboard"><i class="fas fa-users"></i> ADMIN</a>
+                </li>
+                <li><a href="/home/movies"><i class="fas fa-film"></i> Movies</a></li>
+                <li><a href="/home/profile"><i class="fas fa-person"></i> Profile</a></li>
+            </ul>
+        </nav>
+    </aside>
+    <header class="main-header">
+        <form action="/home/search_movie">
+            <input type="text" class="search-bar" name="name"
+                   placeholder="Search for Movies, Events, Plays, Sports and Activities...">
+            <button type="submit" class="search-button">Search</button>
+        </form>
+        <div class="user-profile">
+            <a href="/auth/login"><i class="fas fa-plus" sec:authorize="isAnonymous()">Register</i></a>
+            <a href="/auth/logout"><i class="fas fa-sign-out-alt" sec:authorize="isAuthenticated()">Logout</i></a>
+            <a href="/home/profile" class="profile-link">
+                <img src="/static/img/bbb.jpg" alt="User" class="user-img">
+            </a>
+        </div>
+    </header>
+    <main class="content">
+        <div class="top-banner">
+            <a th:href="@{'/home/movie_details?movie_id=' + ${movies.getLast().movie_id}}">
+                <img th:src="${movies.getLast().extension}" th:alt="${movies.getLast().originalName}">
+            </a>
+        </div>
+        <section class="movies-section">
+            <h2>Movies</h2>
+            <div class="movies-grid">
+                <th:block th:each="movie : ${movies}">
+                    <div class="movie-card">
+                        <a th:href="@{'/home/movie_details?movie_id=' + ${movie.movie_id}}">
+                            <img th:src="${movie.extension}" th:alt="${movie.originalName}">
+                        </a>
+                        <div class="movie-info">
+                            <h3 th:text="${movie.title}"></h3>
+                        </div>
+                    </div>
+                </th:block>
+            </div>
+        </section>
+    </main>
+</div>
+</body>
+</html>

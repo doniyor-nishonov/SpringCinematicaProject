@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Times - Cinematica Admin</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: url('/static/img/background.jpg') no-repeat center center fixed;
+            background-size: cover;
+            color: #f4f4f4;
+        }
+
+        .admin-container {
+            display: flex;
+            height: 100vh;
+        }
+
+        .sidebar {
+            width: 250px;
+            background: #343a40;
+            color: #fff;
+            height: 100vh;
+            position: fixed;
+            transition: all 0.3s ease;
+        }
+
+        .sidebar-header {
+            text-align: center;
+            padding: 1rem;
+            font-size: 1.2rem;
+            background: #212529;
+        }
+
+        .sidebar-nav {
+            padding: 0;
+            list-style: none;
+        }
+
+        .sidebar-nav ul {
+            padding: 0;
+        }
+
+        .sidebar-nav li {
+            border-bottom: 1px solid #495057;
+        }
+
+        .sidebar-nav li a {
+            display: block;
+            padding: 0.8rem 1.2rem;
+            color: #adb5bd;
+            text-decoration: none;
+            font-size: 1rem;
+            transition: background 0.3s ease, color 0.3s ease;
+        }
+
+        .sidebar-nav li a:hover {
+            background: #495057;
+            color: #fff;
+        }
+
+        .admin-content {
+            margin-left: 250px;
+            padding: 2rem;
+            transition: margin-left 0.3s ease;
+            width: 100%;
+            overflow-y: auto;
+        }
+
+        .admin-section {
+            background: rgba(0, 0, 0, 0.8);
+            padding: 2rem;
+            border-radius: 8px;
+            margin-bottom: 2rem;
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        .admin-form {
+            display: flex;
+            flex-direction: column;
+            max-width: 100%;
+        }
+
+        .admin-form label {
+            margin-bottom: 0.5rem;
+            font-weight: bold;
+        }
+
+        .admin-form input, .admin-form textarea {
+            margin-bottom: 1rem;
+            padding: 0.5rem;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+            font-size: 1rem;
+        }
+
+        .admin-form button {
+            padding: 0.75rem;
+            background: #e50914;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .admin-form button:hover {
+            background: #b20710;
+        }
+
+        #hall-images {
+            display: flex;
+            overflow-x: auto;
+            margin-bottom: 1rem;
+            padding: 1rem 0;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            background: #fff;
+            color: #000;
+        }
+
+        #hall-images ul {
+            display: flex;
+            padding: 0;
+            margin: 0;
+            list-style: none;
+            width: 100%;
+        }
+
+        #hall-images li {
+            margin-right: 10px;
+        }
+
+        #hall-images input[type="radio"] {
+            display: none;
+        }
+
+        .hall-thumbnail {
+            width: 100px;
+            height: 100px;
+            object-fit: cover;
+            margin: 5px;
+            border-radius: 5px;
+            transition: transform 0.3s ease;
+        }
+
+        .hall-thumbnail:hover {
+            transform: scale(1.1);
+        }
+
+        @media (max-width: 768px) {
+            .admin-container {
+                flex-direction: column;
+            }
+
+            .sidebar {
+                width: 100%;
+                height: auto;
+                position: relative;
+            }
+
+            .admin-content {
+                margin-left: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="admin-container">
+    <aside class="sidebar">
+        <div class="sidebar-header">
+            <h2>Cinematica Admin</h2>
+        </div>
+        <nav class="sidebar-nav">
+            <ul>
+                <li><a href="/admin/dashboard"><i class="fas fa-film"></i> Dashboard</a></li>
+                <li><a href="/admin/addMovie"><i class="fas fa-film"></i> Create Movies</a></li>
+                <li><a href="/admin/createEvent"><i class="fas fa-film"></i> Create Event</a></li>
+                <li><a href="/admin/manageUsers"><i class="fas fa-users"></i> Manage Users</a></li>
+                <li><a href="/admin/showMovies"><i class="fas fa-eye"></i> Show Movies</a></li>
+                <li><a href="/home/"><i class="fas fa-sign-out-alt"></i> Back</a></li>
+            </ul>
+        </nav>
+    </aside>
+    <main class="admin-content">
+        <section class="admin-section">
+            <h2>Create Times for Movie Sessions</h2>
+            <form class="admin-form" action="/admin/createSession" method="post">
+                <label for="session-start">Start Time</label>
+                <input type="datetime-local" id="session-start" name="startTime" required>
+
+                <label for="session-end">End Time</label>
+                <input type="datetime-local" id="session-end" name="endTime" required>
+
+                <label for="language">Language</label>
+                <input type="text" name="language" id="language">
+
+                <input type="hidden" name="movieId" th:value="${movie_id}">
+
+                <label for="price">Price</label>
+                <input type="number" name="price" id="price">
+                <label>Select Hall</label>
+                <div id="hall-images">
+                    <ul>
+                        <li th:each="image : ${hallImages}">
+                            <input type="checkbox" th:id="${image}" name="screenId" th:value="${image.screenId}">
+                            <label th:for="${image}">
+                                <img th:src="@{${image.imageExtension}}" alt="Hall Image" class="hall-thumbnail">
+                            </label>
+                        </li>
+                    </ul>
+                </div>
+
+                <button type="submit">Create Session</button>
+            </form>
+        </section>
+    </main>
+</div>
+</body>
+</html>

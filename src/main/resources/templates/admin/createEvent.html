@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Event - Cinematica</title>
+    <link rel="stylesheet" href="/static/css/createEvent.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+<div class="admin-container">
+    <aside class="sidebar">
+        <div class="sidebar-header">
+            <h2>Cinematica Admin</h2>
+        </div>
+        <nav class="sidebar-nav">
+            <ul>
+                <li><a href="/admin/dashboard"><i class="fas fa-film"></i> Dashboard</a></li>
+                <li><a href="/admin/addMovie"><i class="fas fa-film"></i> Create Movies</a></li>
+                <li><a href="/admin/manageUsers"><i class="fas fa-users"></i> Manage Users</a></li>
+                <li><a href="/admin/showMovies"><i class="fas fa-eye"></i> Show Movies</a></li>
+                <li><a href="/home/"><i class="fas fa-sign-out-alt"></i> Back</a></li>
+            </ul>
+        </nav>
+    </aside>
+    <main class="admin-content">
+        <section class="admin-section">
+            <h2>Create Event</h2>
+            <form class="admin-form" action="/admin/createEvent" method="POST" enctype="multipart/form-data">
+                <div class="form-group">
+                    <label for="name">Event Name:</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="capacity">Seating Capacity:</label>
+                    <input type="number" id="capacity" name="capacity" required>
+                </div>
+                <div class="form-group">
+                    <label for="sound_system">Sound System:</label>
+                    <input type="text" id="sound_system" name="soundSystem" required>
+                </div>
+                <div class="form-group">
+                    <label for="image">Upload Image:</label>
+                    <input type="file" id="image" name="file" accept="image/*" required>
+                </div>
+                <button type="submit" class="btn">Create Event</button>
+            </form>
+        </section>
+    </main>
+</div>
+</body>
+</html>

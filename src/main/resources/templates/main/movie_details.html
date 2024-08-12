@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Apple TV+</title>
+    <link rel="stylesheet" href="/static/css/movie_details.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+    <script src="https://cdn.jsdelivr.net/npm/particles.js"></script>
+</head>
+<body>
+<div id="particles-js"></div>
+<div class="container animate__animated animate__fadeIn">
+    <aside class="sidebar animate__animated animate__fadeInLeft">
+        <div class="sidebar-header">
+            <h2>Cinematica</h2>
+        </div>
+        <nav class="sidebar-nav">
+            <ul>
+                <li sec:authorize="hasRole('ADMIN')"><a href="/admin/dashboard"><i class="fas fa-users"></i> ADMIN</a>
+                </li>
+                <li><a href="/home/movies"><i class="fas fa-film"></i> Movies</a></li>
+                <li><a href="/home/profile"><i class="fas fa-person"></i> Profile</a></li>
+                <li><a href="/home/"><i class="fas bi-door-closed"></i> Back</a></li>
+            </ul>
+        </nav>
+    </aside>
+    <header class="main-header animate__animated animate__fadeInDown">
+        <input type="text" class="search-bar" placeholder="Search for Movies, Events, Plays, Sports and Activities...">
+        <div class="user-profile">
+            <a href="/auth/login"><i class="fas fa-user-plus" sec:authorize="isAnonymous()"> Register</i></a>
+            <a href="/auth/logout"><i class="fas fa-sign-out-alt" sec:authorize="isAuthenticated()"> Logout</i></a>
+            <a href="/home/profile" class="profile-link">
+                <img th:src="${extension}" alt="User" class="user-img">
+            </a>
+        </div>
+    </header>
+    <main class="content animate__animated animate__fadeInUp">
+        <div class="movie-detail">
+            <div class="movie-detail-header">
+                <img th:src="${movie.extension}" th:alt="${movie.title}" class="movie-poster">
+                <div class="movie-info">
+                    <h1 th:text="${movie.title}"></h1>
+                    <p th:text="${movie.description}"></p>
+                    <p th:text="'Language: ' + ${movie.language}"></p>
+                    <p th:text="'Release Date: ' + ${movie.releaseDate.dayOfMonth} + ' ' + ${movie.releaseDate.month} + ' ' + ${movie.releaseDate.year}"></p>
+                    <p th:text="'Rating: ' + ${movie.rating} + ' / 10'"></p>
+                    <div class="movie-actions">
+                        <a th:href="${movie.trailerUrl}" class="btn trailer-btn" target="_blank">Watch Trailer</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="show-sessions">
+            <div class="header">
+                <h2>Repertoire of sessions on:</h2>
+            </div>
+            <div class="sessions">
+                <h3>Tashkent City Mall</h3>
+                <table>
+                    <tr th:each="showtime : ${showtimes}">
+                        <td th:text="${showtime.eventName}">Hall PEPSI IMAX</td>
+                        <td class="times">
+                            <button class="time">
+                                <span class="date" th:text="${showtime.startTime.toLocalDate()}"></span>
+                                <a th:href="@{/home/buy-tickets(showtimeId=${showtime.showtimeId})}">
+                                    <span class="time"
+                                          th:text="${showtime.startTime.toLocalTime().hour} + ':' + ${showtime.startTime.toLocalTime().minute}"></span>
+                                </a>
+                            </button>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <div class="reviews-section">
+            <div class="reviews-header">
+                <h2>Reviews</h2>
+                <form action="/home/write_review" method="post">
+                    <input type="hidden" name="movieId" th:value="${movie.movie_id}">
+                    <input type="number" name="rating" placeholder="Rating..." required>
+                    <input type="text" name="comment" placeholder="Comment..." required>
+                    <button type="submit" class="btn add-review-btn">Add Review</button>
+                </form>
+            </div>
+            <div class="reviews-list">
+                <div th:each="review : ${reviews}" class="review-item">
+                    <div class="review-author">
+                        <img th:src="${review.extension}" alt="User" class="review-user-img" th:if="${review.extension}">
+                        <img src="/static/img/bbb.jpg" alt="User" class="review-user-img" th:if="${review.extension==null}">
+                        <h3 th:text="${review.fullName}"></h3>
+                    </div>
+                    <p th:text="${review.comment}"></p>
+                    <p class="review-rating">Rating: <span th:text="${review.rating}"></span>/10</p>
+
+                    <!-- Display delete button only if the logged-in user is the author of the review -->
+                    <form th:action="@{/home/delete_review}" method="post" th:if="${user_id==review.userId}">
+                        <input type="hidden" name="reviewId" th:value="${review.reviewId}">
+                        <input type="hidden" name="movieId" th:value="${review.movieId}">
+                        <button type="submit" class="btn delete-review-btn">Delete</button>
+                    </form>
+                </div>
+            </div>
+
+        </div>
+    </main>
+</div>
+</body>
+
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Payment Page</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/css/payment.css">
+</head>
+<body>
+<h1>Payment for Your Ticket</h1>
+<h2 th:text="${showtimeDetails}">08.08 10:20 | Tashkent City | Hall PEPSI IMAX</h2>
+<p>Total Amount: <span th:text="${totalAmount}">50.00</span> USD</p>
+
+<form th:action="@{/home/confirm_payment}" method="post">
+    <input type="hidden" name="showtimeId" th:value="${showtimeId}">
+    <input type="hidden" name="selectedSeats" th:value="${selectedSeats}">
+    <input type="hidden" name="totalAmount" th:value="${totalAmount}">
+
+    <div>
+        <label for="cardHolderName">Cardholder Name</label>
+        <input type="text" id="cardHolderName" name="cardHolderName" required>
+    </div>
+
+    <div>
+        <label for="cardNumber">Card Number</label>
+        <input type="text" id="cardNumber" name="cardNumber" required maxlength="16" minlength="16">
+    </div>
+
+    <div>
+        <label for="expiryDate">Expiry Date (MM/YY)</label>
+        <input type="text" id="expiryDate" name="expiryDate" required pattern="\d{2}/\d{2}">
+    </div>
+
+    <div>
+        <label for="cvv">CVV</label>
+        <input type="text" id="cvv" name="cvv" required maxlength="3" minlength="3">
+    </div>
+
+    <button type="submit">Pay</button>
+</form>
+
+<form th:action="@{/home/}" method="get">
+    <button type="submit">Cancel</button>
+</form>
+</body>
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Ticket Purchase</title>
+    <link rel="stylesheet" href="/static/css/ticket_purchase.css">
+</head>
+<body>
+<h1>Cinematica</h1>
+<h2>08.08 10:20 | Tashkent City | Hall PEPSI IMAX</h2>
+
+<div>
+    <span>Your places:</span>
+    <span id="selectedSeats"></span>
+</div>
+
+<div id="seatingChart">
+    <div th:each="seatNum : ${#numbers.sequence(1, totalSeats)}"
+         th:classappend="${soldSeats.contains(seatNum)} ? 'seat taken' : 'seat free'"
+         th:text="${seatNum}"
+         th:data-seat-num="${seatNum}"
+         onclick="selectSeat(this)">
+    </div>
+</div>
+
+<div class="screen">Display</div>
+
+<form th:action="@{/home/buy-tickets}" method="post">
+    <input type="hidden" name="selectedSeats" id="selectedSeatsInput">
+    <input type="hidden" name="showtimeId" th:value="${showtimeId}">
+    <button type="submit">Buy</button>
+    <button type="button" onclick="cancelSelection()">Cancel</button>
+</form>
+
+<script>
+    function selectSeat(seatElement) {
+        if (!seatElement.classList.contains('taken')) {
+            seatElement.classList.toggle('your-seat');
+            updateSelectedSeats();
+        }
+    }
+
+    function updateSelectedSeats() {
+        const selectedSeats = document.querySelectorAll('.your-seat');
+        const seatNums = Array.from(selectedSeats).map(seat => seat.getAttribute('data-seat-num'));
+        document.getElementById('selectedSeats').innerText = seatNums.join(', ');
+        document.getElementById('selectedSeatsInput').value = seatNums.join(',');
+    }
+
+    function cancelSelection() {
+        document.querySelectorAll('.your-seat').forEach(seat => seat.classList.remove('your-seat'));
+        updateSelectedSeats();
+        window.location.href = "/home/";
+    }
+</script>
+</body>
+</html>

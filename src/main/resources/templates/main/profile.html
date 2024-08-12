@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Profile</title>
+    <link rel="stylesheet" href="/static/css/profile.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+</head>
+<body>
+<div class="container">
+    <aside class="sidebar">
+        <div class="sidebar-header">
+            <h2>Cinematica</h2>
+        </div>
+        <nav class="sidebar-nav">
+            <ul>
+                <li sec:authorize="hasRole('ADMIN')"><a href="/admin/dashboard"><i class="fas fa-users"></i> ADMIN</a></li>
+                <li><a href="/home/"><i class="fas fa-bars"></i> Menu</a></li>
+                <li><a href="/home/movies"><i class="fas fa-film"></i> Movies</a></li>
+                <li><a href="/home/"><i class="fas fa-door-closed"></i> Back</a></li>
+            </ul>
+        </nav>
+    </aside>
+    <header class="main-header">
+        <form action="/home/search_movie">
+            <input type="text" class="search-bar" name="name"
+                   placeholder="Search for Movies, Events, Plays, Sports and Activities...">
+            <button type="submit" class="search-button">Search</button>
+        </form>
+        <div class="user-profile">
+            <a href="/auth/login"><i class="fas fa-user-plus" sec:authorize="isAnonymous()"> Register</i></a>
+            <a href="/auth/logout"><i class="fas fa-sign-out-alt" sec:authorize="isAuthenticated()"> Logout</i></a>
+            <a href="/home/profile" class="profile-link">
+                <img th:src="${extension}" alt="User" class="user-img animate__animated animate__zoomIn">
+            </a>
+        </div>
+    </header>
+    <main class="content">
+        <div class="profile-container animate__animated animate__fadeIn">
+            <div class="profile-header">
+                <img th:src="${extension}" alt="User Profile"
+                     class="profile-img animate__animated animate__bounceIn">
+                <h1 class="profile-name" th:text="${user.name}">John Doe</h1>
+            </div>
+            <div class="profile-details">
+                <h2>Profile Details</h2>
+                <p><strong>Phone Number:</strong> <span th:text="${user.phoneNumber}">+998999999999</span></p>
+                <p><strong>Username:</strong> <span th:text="${user.username}">john</span></p>
+                <p><strong>Favorite Genre:</strong> Sci-Fi</p>
+                <p><strong>Watchlist:</strong> 120 Movies</p>
+            </div>
+            <a class="btn-transaction-history animate__animated animate__fadeInUp" href="/home/transactions">Show Transaction History</a>
+        </div>
+        <div class="profile-upload">
+            <form action="/home/profilePhotoUpdate" method="post" enctype="multipart/form-data">
+                <label for="file-upload" class="upload-btn">Upload New Profile Picture</label>
+                <input type="file" id="file-upload" name="file" accept="image/*">
+                <button type="submit" class="btn btn-success">Submit</button>
+            </form>
+        </div>
+    </main>
+</div>
+</body>
+</html>

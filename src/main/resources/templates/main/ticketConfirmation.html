@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Ticket Confirmation</title>
+  <!-- External Libraries -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: #121212;
+      color: #fff;
+      margin: 0;
+      padding: 20px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+    .ticket-container {
+      background-color: #1f1f1f;
+      border-radius: 15px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+      padding: 30px;
+      max-width: 600px;
+      width: 100%;
+      animation: fadeIn 1s ease;
+    }
+    .ticket-header {
+      text-align: center;
+      margin-bottom: 25px;
+    }
+    .ticket-header h1 {
+      margin: 0;
+      font-size: 28px;
+      font-weight: 600;
+      color: #FFD700;
+    }
+    .ticket-header p {
+      font-size: 16px;
+      color: #bbb;
+    }
+    .ticket-details h2 {
+      margin-top: 0;
+      font-size: 20px;
+      font-weight: 600;
+      color: #FFD700;
+    }
+    .ticket-details p {
+      margin: 5px 0;
+      font-size: 16px;
+      color: #ddd;
+    }
+    .qr-code {
+      text-align: center;
+      margin-top: 30px;
+    }
+    .qr-code h2 {
+      font-size: 20px;
+      font-weight: 600;
+      color: #FFD700;
+    }
+    .qr-code img {
+      width: 150px;
+      height: 150px;
+      margin-top: 10px;
+    }
+    .back-button {
+      display: block;
+      margin: 20px auto 0;
+      padding: 10px 20px;
+      background-color: #FFD700;
+      color: #000;
+      text-align: center;
+      border-radius: 5px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: background-color 0.3s ease;
+    }
+    .back-button:hover {
+      background-color: #e0b500;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+  </style>
+</head>
+<body>
+<div class="ticket-container animate__animated animate__fadeIn">
+  <div class="ticket-header">
+    <h1>Ticket Confirmation</h1>
+    <p>Thank you for your purchase!</p>
+  </div>
+
+  <div class="ticket-details">
+    <h2>Information:</h2>
+    <p><strong>Name:</strong> <span th:text="${fullname}"></span></p>
+    <p><strong>Movie:</strong> <span th:text="${movieName}"></span></p>
+    <p><strong>Cinema:</strong> <span th:text="${cinemaName}"></span></p>
+    <p><strong>Seats:</strong> <span th:text="${seats}"></span></p>
+    <p><strong>Date:</strong> <span th:text="${currentTime}"></span></p>
+    <p><strong>Price:</strong> <span th:text="${price}"></span></p>
+  </div>
+
+  <div class="qr-code">
+    <h2>QR Code:</h2>
+    <img src="/static/img/qr_code_placeholder.png" alt="QR Code"/>
+  </div>
+
+  <a href="/home/" class="back-button animate__animated animate__bounceIn">Back to Movies</a>
+</div>
+</body>
+</html>

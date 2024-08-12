@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Apple TV</title>
+    <link rel="stylesheet" href="/static/css/logout.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+</head>
+<body>
+<div class="container" id="logoutContainer">
+    <div class="form-container logout-container animate__animated animate__fadeIn">
+        <form id="logoutForm" action="/auth/logout" method="POST">
+            <h1 class="animate__animated animate__fadeInDown">Are you sure you want to log out?</h1>
+            <div class="buttons">
+                <button type="submit" id="confirmLogout" class="animate__animated animate__fadeInUp">Yes</button>
+                <button type="button" id="cancelLogout" class="animate__animated animate__fadeInUp"><a href="/home/">No</a></button>
+            </div>
+        </form>
+    </div>
+</div>
+<script src="/static/js/logout.js"></script>
+</body>
+</html>
