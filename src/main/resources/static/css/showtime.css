@@ -1,0 +1,89 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background: #f4f4f4;
+    color: #333;
+}
+
+.container {
+    width: 80%;
+    margin: auto;
+    overflow: hidden;
+}
+
+.header {
+    padding: 20px;
+    background: #007bff;
+    color: white;
+    text-align: center;
+}
+
+.header .date-buttons {
+    margin-top: 10px;
+}
+
+.header .date-button {
+    background: #fff;
+    color: #007bff;
+    border: none;
+    padding: 10px;
+    margin: 5px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background 0.3s ease;
+}
+
+.header .date-button:hover {
+    background: #e7e7e7;
+}
+
+.header .date-button.active {
+    background: #0056b3;
+    color: white;
+}
+
+.sessions {
+    margin-top: 20px;
+    padding: 20px;
+    background: #fff;
+    border-radius: 5px;
+}
+
+.cinema h3 {
+    background: #007bff;
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+    margin-top: 0;
+}
+
+.table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.table td {
+    padding: 10px;
+    border: 1px solid #ddd;
+}
+
+.times {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.time {
+    background: #007bff;
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.time:hover {
+    background: #0056b3;
+}

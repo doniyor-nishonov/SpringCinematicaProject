@@ -1,0 +1,464 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background: #f4f4f4;
+    position: relative;
+}
+
+#particles-js {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+}
+
+.container {
+    display: flex;
+    position: relative;
+    z-index: 1;
+}
+
+.sidebar {
+    width: 200px;
+    background: #343a40;
+    color: #fff;
+    height: 100vh;
+    position: fixed;
+    z-index: 2;
+}
+
+.sidebar-header {
+    text-align: center;
+    padding: 1rem;
+    font-size: 1.2rem;
+    background: #212529;
+}
+
+.sidebar-nav {
+    padding: 0;
+    list-style: none;
+}
+
+.sidebar-nav ul {
+    padding: 0;
+}
+
+.sidebar-nav li {
+    border-bottom: 1px solid #495057;
+}
+
+.sidebar-nav li a {
+    display: block;
+    padding: 0.8rem 1.2rem;
+    color: #adb5bd;
+    text-decoration: none;
+    font-size: 1rem;
+}
+
+.sidebar-nav li a:hover {
+    background: #495057;
+    color: #fff;
+}
+
+.sidebar-nav .extra {
+    margin-top: 2rem;
+}
+
+.main-header {
+    width: calc(100% - 200px);
+    margin-left: 200px;
+    background: #fff;
+    padding: 1rem;
+    display: flex;
+    gap: 100px;
+    justify-content: center;
+    align-items: center;
+    border-bottom: 1px solid #ddd;
+    position: fixed;
+    z-index: 1000;
+}
+
+.search-bar {
+    width: 50%;
+    padding: 0.5rem;
+    border: 1px solid #ccc;
+    border-radius: 20px;
+}
+
+.user-profile {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.user-profile a {
+    margin-left: 1rem;
+    color: #495057;
+    text-decoration: none;
+}
+
+.user-profile img.user-img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+}
+
+.user-profile .profile-link {
+    display: flex;
+    align-items: center;
+    margin-left: 1rem;
+}
+
+.user-profile .username {
+    margin-left: 0.5rem;
+    color: #495057;
+}
+
+.content {
+    margin-left: 200px;
+    padding: 2rem;
+    margin-top: 70px;
+}
+
+.movie-detail {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.movie-detail-header {
+    display: flex;
+    flex-direction: column; /* Stack the image and info vertically */
+    align-items: center; /* Center-align the image and info */
+    gap: 2rem;
+}
+
+.movie-poster {
+    width: 100%; /* Full width from left to right */
+    height: 500px; /* Increase the height to make it larger */
+    object-fit: cover; /* Ensure the image covers the entire area without stretching */
+    border-radius: 0; /* Remove border radius to make it fully rectangular */
+    box-shadow: none; /* Remove shadow to keep the focus on size */
+    margin-bottom: 2rem; /* Add space below the image */
+}
+
+
+.movie-info {
+    max-width: 80%; /* Keep the content width smaller than the full width */
+    text-align: center; /* Center the text content */
+}
+
+
+.movie-info h1 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+}
+
+.movie-info p {
+    margin-bottom: 1rem;
+    font-size: 1.2rem;
+    color: #555;
+}
+
+.movie-actions {
+    display: flex;
+    gap: 1rem;
+    margin-top: 2rem;
+}
+
+.movie-actions .btn {
+    padding: 0.7rem 1.5rem;
+    font-size: 1rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.movie-actions .buy-btn {
+    background: #007bff;
+    color: #fff;
+}
+
+.movie-actions .trailer-btn {
+    background: #6c757d;
+    color: #fff;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+}
+
+.show-sessions {
+    margin-top: 2rem;
+}
+
+.show-sessions .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 2px solid #ddd;
+    padding-bottom: 1rem;
+    margin-bottom: 1rem;
+}
+
+.show-sessions .header h2 {
+    font-size: 1.5rem;
+    color: #333;
+}
+
+.show-sessions .date-buttons {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.show-sessions .date-button {
+    padding: 0.5rem 1rem;
+    border: 1px solid #ddd;
+    background: #fff;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.show-sessions .date-button.active,
+.show-sessions .date-button:hover {
+    background: #007bff;
+    color: #fff;
+}
+
+.sessions .cinema {
+    margin-bottom: 2rem;
+}
+
+.sessions .cinema h3 {
+    font-size: 1.2rem;
+    color: #333;
+    margin-bottom: 0.5rem;
+}
+
+.sessions .cinema table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 1rem;
+}
+
+.sessions .cinema table td {
+    padding: 0.5rem;
+    border: 1px solid #ddd;
+}
+
+.sessions .cinema table td.times {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.sessions .cinema table td.times .time {
+    padding: 0.5rem 1rem;
+    border: 1px solid #ddd;
+    background: #fff;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.sessions .cinema table td.times .time:hover {
+    background: #007bff;
+    color: #fff;
+}
+.show-sessions {
+    margin: 20px 0;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.date-buttons {
+    display: flex;
+}
+
+.date-button {
+    margin-right: 5px;
+    padding: 5px 10px;
+    border: 1px solid #0066cc;
+    background-color: white;
+    color: #0066cc;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.date-button:hover {
+    background-color: #0066cc;
+    color: white;
+}
+
+.sessions {
+    margin-top: 20px;
+}
+
+.sessions h3 {
+    background-color: #0066cc;
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+
+table td {
+    padding: 10px;
+    border-bottom: 1px solid #e6e6e6;
+}.times {
+     display: flex;
+     align-items: center;
+     justify-content: start;
+ }
+
+.date, .time {
+    font-size: 16px;
+    font-weight: bold;
+    color: #2c3e50;
+    margin-right: 10px; /* Adjust the space between the date and time */
+}
+
+.time button {
+    background-color: #f2f2f2;
+    border: 1px solid #dcdcdc;
+    padding: 8px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.time button:hover {
+    background-color: #e0e0e0;
+}
+
+.time a {
+    color: inherit; /* Keep the text color inside the button */
+    text-decoration: none;
+}
+
+.time:hover {
+    background-color: #285e5e;
+    color: #fff;
+}
+
+.time a:hover {
+    color: #fff; /* Make sure the link color changes when hovered */
+}
+.reviews-section {
+    margin-top: 3rem;
+    padding: 2rem;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.reviews-header {
+    margin-bottom: 2rem;
+    text-align: center;
+}
+
+.reviews-header h2 {
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+    color: #333;
+}
+
+.reviews-header form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+}
+
+.reviews-header input[type="number"],
+.reviews-header input[type="text"] {
+    padding: 0.7rem;
+    width: 100%;
+    max-width: 400px;
+    font-size: 1rem;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    outline: none;
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.reviews-header .add-review-btn {
+    padding: 0.7rem 1.5rem;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.reviews-header .add-review-btn:hover {
+    background-color: #0056b3;
+}
+
+.reviews-list {
+    margin-top: 2rem;
+}
+
+.review-item {
+    display: flex;
+    flex-direction: column;
+    padding: 1.5rem;
+    border-bottom: 1px solid #eee;
+    margin-bottom: 1.5rem;
+}
+
+.review-author {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.review-user-img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.review-author h3 {
+    font-size: 1.2rem;
+    color: #333;
+}
+
+.review-item p {
+    font-size: 1rem;
+    color: #555;
+    margin-bottom: 0.5rem;
+}
+
+.review-rating {
+    font-size: 1rem;
+    color: #777;
+}
+.delete-review-btn {
+    margin-top: 0.5rem;
+    padding: 0.5rem 1rem;
+    background-color: #dc3545;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.delete-review-btn:hover {
+    background-color: #c82333;
+}

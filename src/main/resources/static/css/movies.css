@@ -1,0 +1,75 @@
+body {
+    font-family: 'Arial', sans-serif;
+    background: url('/static/img/background.jpeg') no-repeat center center fixed;
+    background-size: cover;
+    color: #e0e0e0; /* Light gray text for better readability */
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    padding: 2rem 0;
+}
+
+.header {
+    background: rgba(0, 0, 0, 0.8); /* Darker background */
+    padding: 1.5rem;
+    border-radius: 8px;
+    color: #f4f4f4;
+    text-transform: uppercase;
+    font-weight: bold;
+    animation: fadeInDown 1s ease;
+}
+
+.filter-section {
+    margin-bottom: 2rem;
+    background: rgba(0, 0, 0, 0.7); /* Darker background for filter section */
+    padding: 1rem;
+    border-radius: 8px;
+}
+
+.custom-select {
+    background-color: #333; /* Darker background for select */
+    color: #e0e0e0; /* Light text for select */
+    border: 1px solid #444; /* Slightly lighter border */
+}
+
+.custom-select option {
+    background-color: #222; /* Darker option background */
+    color: #e0e0e0; /* Light text for options */
+}
+
+.movie-card {
+    background: rgba(0, 0, 0, 0.9); /* Darker background for movie cards */
+    border-radius: 15px;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    color: #e0e0e0; /* Light text color */
+}
+
+.movie-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.6); /* Darker shadow for better contrast */
+}
+
+.movie-thumbnail {
+    width: 100%;
+    height: auto;
+    border-radius: 15px 15px 0 0;
+}
+
+.card-title {
+    margin-top: 1rem;
+    font-size: 1.25rem;
+    color: #f4f4f4; /* Light color for title */
+}
+
+.card-text {
+    font-size: 0.9rem;
+    color: #c0c0c0; /* Slightly darker gray for text */
+}
+
+.card-text.text-muted {
+    font-size: 0.85rem;
+    color: #a0a0a0; /* Darker muted text */
+}

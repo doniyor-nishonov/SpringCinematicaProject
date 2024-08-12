@@ -1,0 +1,108 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 20px;
+    background-color: #f5f5f5;
+}
+
+h1, h2 {
+    text-align: center;
+}
+
+#selectedSeats {
+    color: orange;
+    font-weight: bold;
+}
+
+#seatingChart {
+    display: grid;
+    grid-template-columns: repeat(9, 30px);
+    justify-content: center;
+    gap: 10px;
+    max-width: 300px;
+    margin: 20px auto;
+}
+
+.seat {
+    width: 30px;
+    height: 30px;
+    border: 1px solid #ccc;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.free {
+    background-color: #fff;
+}
+
+.taken {
+    background-color: #333;
+    cursor: not-allowed;
+}
+
+.your-seat {
+    background-color: #ffa500;
+}
+
+.screen {
+    width: 100%;
+    height: 30px;
+    background-color: #ccc;
+    text-align: center;
+    margin-top: 20px;
+    line-height: 30px;
+    font-weight: bold;
+    border-radius: 5px;
+}
+
+button {
+    display: block;
+    width: 150px;
+    padding: 10px;
+    margin: 20px auto;
+    font-size: 16px;
+    color: #fff;
+    background-color: #007bff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+button:active {
+    background-color: #003f7f;
+}
+
+button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
+.seat {
+    width: 40px;
+    height: 40px;
+    margin: 5px;
+    display: inline-block;
+    text-align: center;
+    line-height: 40px;
+    cursor: pointer;
+}
+
+.seat.free {
+    background-color: #4CAF50;
+}
+
+.seat.taken {
+    background-color: #FF5722;
+    cursor: not-allowed;
+}
+
+.seat.your-seat {
+    background-color: #FFD700;
+}

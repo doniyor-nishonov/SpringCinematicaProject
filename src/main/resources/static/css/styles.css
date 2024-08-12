@@ -1,0 +1,229 @@
+/* General Body Styling */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background: #f4f4f4;
+}
+
+/* Container Flexbox */
+.container {
+    display: flex;
+    animation: fadeIn 1s ease-in-out;
+}
+
+/* Sidebar Styling */
+.sidebar {
+    width: 200px;
+    background: #343a40;
+    color: #fff;
+    height: 100vh;
+    position: fixed;
+    animation: slideIn 0.5s ease-in-out;
+}
+
+.sidebar-header {
+    text-align: center;
+    padding: 1rem;
+    font-size: 1.2rem;
+    background: #212529;
+    border-bottom: 1px solid #495057;
+}
+
+.sidebar-nav ul {
+    padding: 0;
+    list-style: none;
+}
+
+.sidebar-nav li {
+    border-bottom: 1px solid #495057;
+}
+
+.sidebar-nav li a {
+    display: block;
+    padding: 0.8rem 1.2rem;
+    color: #adb5bd;
+    text-decoration: none;
+    font-size: 1rem;
+    transition: background 0.3s, color 0.3s;
+}
+
+.sidebar-nav li a:hover {
+    background: #495057;
+    color: #fff;
+    transform: scale(1.05);
+}
+
+.sidebar-nav .extra {
+    margin-top: 2rem;
+}
+
+/* Main Header Styling */
+.main-header {
+    width: calc(100% - 200px);
+    margin-left: 200px;
+    background: #fff;
+    padding: 1rem;
+    display: flex;
+    justify-content: space-between; /* Adjust to keep items properly spaced */
+    align-items: center;
+    border-bottom: 1px solid #ddd;
+    position: fixed;
+    z-index: 1000;
+    animation: slideDown 0.5s ease-in-out;
+}
+
+/* Search Bar */
+.search-bar {
+    width: 50%;
+    padding: 0.5rem;
+    border: 1px solid #ccc;
+    border-radius: 20px;
+    transition: box-shadow 0.3s;
+}
+
+.search-bar:focus {
+    box-shadow: 0 0 10px rgba(0, 123, 255, 0.5);
+}
+
+/* User Profile Section */
+.user-profile {
+    display: flex;
+    align-items: center;
+}
+
+.user-profile a {
+    margin-left: 1rem;
+    color: #495057;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.user-profile a:hover {
+    color: #007bff;
+}
+
+.user-profile img.user-img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    transition: transform 0.3s;
+}
+
+.user-profile img.user-img:hover {
+    transform: scale(1.1);
+}
+
+/* Content Section */
+.content {
+    margin-left: 200px;
+    padding: 2rem;
+    margin-top: 70px;
+    animation: fadeIn 1s ease-in-out;
+}
+
+/* Top Banner */
+.top-banner img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    transition: transform 0.3s;
+}
+
+.top-banner img:hover {
+    transform: scale(1.05);
+}
+
+/* Movies Section */
+.movies-section {
+    margin-top: 2rem;
+}
+
+.movies-section h2 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+.movies-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 1rem;
+}
+
+.movie-card {
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.movie-card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+}
+
+.movie-card img {
+    width: 100%;
+    height: auto;
+}
+
+.movie-info {
+    padding: 1rem;
+}
+
+.movie-rating {
+    font-size: 1rem;
+    color: #ff6f61;
+    margin-bottom: 0.5rem;
+}
+
+.movie-info h3 {
+    font-size: 1.2rem;
+    margin: 0;
+}
+
+/* Keyframes */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateX(-100%);
+    }
+    to {
+        transform: translateX(0);
+    }
+}
+
+@keyframes slideDown {
+    from {
+        transform: translateY(-100%);
+    }
+    to {
+        transform: translateY(0);
+    }
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .main-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .search-bar {
+        width: 100%;
+        margin-bottom: 1rem;
+    }
+
+    .user-profile {
+        justify-content: flex-start;
+    }
+}
